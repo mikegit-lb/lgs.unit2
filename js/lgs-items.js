@@ -521,6 +521,22 @@ window.LGS = (function () {
       durationSec: 480,          // 8 min — speed run
       description: 'Zaman baskısı testi: 8 dakikada 10 soru. Hız ve doğruluk dengesi.',
       itemIds: ['v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10']
+    },
+    {
+      id: 'mock5',
+      name: 'Deneme 5 · Kazanım Kontrolü',
+      short: 'Deneme 5',
+      durationSec: 720,          // 12 min — 1.2 min/question
+      description: 'Kapsamlı deneme: 12 dakikada 10 soru. Tablo okuma ve "cevabı olmayan soru" ağırlıklı.',
+      itemIds: ['w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7', 'w8', 'w9', 'w10']
+    },
+    {
+      id: 'mock6',
+      name: 'Deneme 6 · Final Provası',
+      short: 'Deneme 6',
+      durationSec: 600,          // 10 min — final rehearsal
+      description: 'Final provası: 10 dakikada 10 soru. Gerçek sınav öncesi son kontrol.',
+      itemIds: ['y1', 'y2', 'y3', 'y4', 'y5', 'y6', 'y7', 'y8', 'y9', 'y10']
     }
   ];
 
@@ -934,6 +950,192 @@ window.LGS = (function () {
     }
   ];
 
+  /* ---------------- Mock 5 items (Deneme 5 — 12 dk) ---------------- */
+  const mock5Items = [
+    {
+      id: 'w1', type: 'table', diff: 'easy',
+      stimulusTitle: 'Weekly club timetable',
+      stimulus: `<table class="grid-table">
+        <tr><th>Club</th><th>Day</th><th>Time</th></tr>
+        <tr><td class="rowhead">Photography</td><td>Monday</td><td>14:30</td></tr>
+        <tr><td class="rowhead">Choir</td><td>Tuesday</td><td>15:00</td></tr>
+        <tr><td class="rowhead">Photography</td><td>Thursday</td><td>14:30</td></tr>
+        <tr><td class="rowhead">Robotics</td><td>Wednesday</td><td>16:00</td></tr>
+      </table>`,
+      stem: 'A student can only come on Tuesday and Thursday. Which club can they join?',
+      opts: ['Photography', 'Choir', 'Robotics', 'None of them'],
+      answer: 0,
+      why: 'Fotoğrafçılık hem Pazartesi hem Perşembe 14:30\'da. Öğrenci Salı + Perşembe gelebiliyor → Perşembe oturumuna katılabilir. Robotics Çarşamba, Choir Salı — ikisi de tek gün.'
+    },
+    {
+      id: 'w2', type: 'dialogue', diff: 'medium',
+      stem: 'Which is the most suitable response?\n\n— Would you mind if I opened the window?\n— ______',
+      opts: ['Not at all. Go ahead.', 'Yes, I mind a lot.', 'No, I would not open it.', 'Because it is cold.'],
+      answer: 0,
+      why: '"Would you mind if..." kibar bir izin sorusu. Olumlu izin yanıtı "Not at all / Of course not" ile verilir — burada "mind" olumsuz sorulduğu için "not at all" = izin veriyorum.'
+    },
+    {
+      id: 'w3', type: 'order', diff: 'medium',
+      stem: 'Which is the correct order?\n\nI. Yes, I am. I am so excited!\nII. Are you ready for the school trip?\nIII. Great. The bus leaves at seven.\nIV. Me too. I have packed my bag already.',
+      opts: ['II - I - III - IV', 'I - II - III - IV', 'II - III - I - IV', 'III - II - I - IV'],
+      answer: 0,
+      why: 'II soru → I evet + duygu → III takip bilgisi → IV karşılık. "Me too" ancak önceki cümle olumluysa kullanılır.'
+    },
+    {
+      id: 'w4', type: 'noanswer', diff: 'medium',
+      stimulusTitle: 'School library notice',
+      stimulus: '📚 SCHOOL LIBRARY\nOpen: 08:00 – 16:30 (weekdays)\nYou can borrow two books at a time.\nBooks must be returned within 14 days.\nLate return: 1 TL per day.\nAsk the librarian for a membership card.',
+      stem: 'Which question does NOT have an answer on the notice?',
+      opts: ['How many books can you borrow?', 'What time does the library close?', 'How much is a membership card?', 'What happens if you return a book late?'],
+      answer: 2,
+      why: 'Üyelik KARTININ ücreti yazılmamış — sadece "ask for a membership card" deniyor. Diğer üçünün cevabı daire içinde.'
+    },
+    {
+      id: 'w5', type: 'infer', diff: 'hard',
+      stem: 'What can we understand from the text?\n\n"Zeynep wants to learn the guitar, but her flat is small and her neighbours complain about the noise. So she practices at her uncle\'s house twice a week, and on other days she plays only with headphones on an electric guitar."',
+      opts: ['Zeynep has stopped learning the guitar.', 'Zeynep found a way to practise without disturbing her neighbours.', 'Zeynep\'s uncle lives in the same building.', 'Zeynep practises at home every day.'],
+      answer: 1,
+      why: 'Metin iki çözüm sunuyor: amcada pratik + kulaklıkla elektrik gitar → komşuları rahatsız etmeden çalışıyor. A tuzak: bırakmadı, devam ediyor.'
+    },
+    {
+      id: 'w6', type: 'mainidea', diff: 'easy',
+      stem: 'Which is the best title?\n\n"Every summer my family and I go to the same village. My grandfather was born there. We stay for three weeks. I help him in the garden, feed the chickens and learn stories about the old days. I love those weeks because they are quiet and I forget all about my phone."',
+      opts: ['My Grandfather\'s Village', 'How to Feed Chickens', 'My Summer Homework', 'Phones Are Useful'],
+      answer: 0,
+      why: 'Metnin bütün satırları köye, dedeye ve yaz tatiline gidiyor → en kapsayıcı başlık A.'
+    },
+    {
+      id: 'w7', type: 'table', diff: 'hard',
+      stimulusTitle: 'A survey: "How do you go to school?" (40 students)',
+      stimulus: `<table class="grid-table">
+        <tr><th>Way</th><th>Students</th></tr>
+        <tr><td class="rowhead">By bus</td><td>16</td></tr>
+        <tr><td class="rowhead">On foot</td><td>10</td></tr>
+        <tr><td class="rowhead">By car</td><td>8</td></tr>
+        <tr><td class="rowhead">By bicycle</td><td>6</td></tr>
+      </table>`,
+      stem: 'How many more students go by bus than by car?',
+      opts: ['6', '8', '10', '24'],
+      answer: 1,
+      why: 'Otobüs 16, araba 8 → fark 8. Tablodaki toplam (40) bu soruda kullanılmaz; sadece iki satırı karşılaştır.'
+    },
+    {
+      id: 'w8', type: 'dialogue', diff: 'hard',
+      stem: 'Which is the most suitable question?\n\n— ______\n— I would rather walk to school than take the bus.',
+      opts: ['How do you go to school?', 'Why do you like buses?', 'What time do you leave home?', 'Do you walk to school every day?'],
+      answer: 0,
+      why: 'Cevap bir TERCİH bildiriyor ("would rather... than...") → soru da seçeneklerden biriyle bu tercihi sormalı. "How do you go to school?" en doğrusu; D ise "her gün" diye soruyor ama cevap tercih.'
+    },
+    {
+      id: 'w9', type: 'noanswer', diff: 'hard',
+      stimulusTitle: 'A message from the organiser',
+      stimulus: 'Hi class!\nThis year\'s spring trip is on 12 May. We will visit the Science Museum and then have a picnic in the park.\nPlease pay 80 TL to Ms. Demir until 5 May.\nWear comfortable shoes and bring a hat.\nIf it rains, the trip will be postponed to 19 May.\nSee you!\n— Mr. Kaya',
+      stem: 'Which question does NOT have an answer in the message?',
+      opts: ['When is the spring trip?', 'Where will the students have a picnic?', 'What should the students wear?', 'Which museum will they visit in the morning?'],
+      answer: 3,
+      why: '"Science Museum" ziyaret edilecek ama SABAH/ÖĞLEDEN SONRA bilgisi YOK. Saat bilgisi hiçbir yerde geçmiyor — en ince tuzak bu.'
+    },
+    {
+      id: 'w10', type: 'order', diff: 'medium',
+      stem: 'Which is the correct order?\n\nI. Neither do I. I think it is too noisy.\nII. Do you enjoy living in the city centre?\nIII. Why is that?\nIV. Because there are too many cars everywhere.',
+      opts: ['II - I - III - IV', 'I - II - III - IV', 'II - III - I - IV', 'III - II - I - IV'],
+      answer: 0,
+      why: 'II soru → I olumsuz yanıt ("Neither do I") → III "Why is that?" → IV gerekçe. "Neither do I" ancak önceki cümle olumsuzsa kullanılır.'
+    }
+  ];
+
+  /* ---------------- Mock 6 items (Deneme 6 — 10 dk) ---------------- */
+  const mock6Items = [
+    {
+      id: 'y1', type: 'dialogue', diff: 'easy',
+      stem: 'Which is the most suitable response?\n\n— I have just won the school poetry contest!\n— ______',
+      opts: ['Congratulations! That\'s great news.', 'I am sorry to hear that.', 'That\'s all right.', 'Good luck next time.'],
+      answer: 0,
+      why: 'Müjdeli haber → tebrik. B üzüntü, C özür/fark etmez, D "umarım gelecek sefer" — hiçbiri burada uygun değil.'
+    },
+    {
+      id: 'y2', type: 'table', diff: 'medium',
+      stimulusTitle: 'Teenagers\' favourite free-time activity',
+      stimulus: `<table class="grid-table">
+        <tr><th>Activity</th><th>Girls</th><th>Boys</th></tr>
+        <tr><td class="rowhead">Reading</td><td>14</td><td>5</td></tr>
+        <tr><td class="rowhead">Sports</td><td>6</td><td>13</td></tr>
+        <tr><td class="rowhead">Music</td><td>10</td><td>12</td></tr>
+      </table>`,
+      stem: 'Which activity is the most popular overall?',
+      opts: ['Reading', 'Sports', 'Music', 'They are all equal.'],
+      answer: 2,
+      why: 'Toplamlar: Reading 19, Sports 19, Music 22 → Müzik en popüler. Sütunları ayrı ayrı değil, TOPLA bak.'
+    },
+    {
+      id: 'y3', type: 'infer', diff: 'medium',
+      stem: 'What can we understand?\n\n"Berk never used to read books, but last year his English teacher gave him a short adventure novel. He liked it so much that he read three more books in English. Now he says reading in a foreign language is not as difficult as he thought."',
+      opts: ['Berk reads more books in English than in Turkish now.', 'A teacher helped Berk start reading in English.', 'Berk still finds reading difficult.', 'Berk only reads adventure novels.'],
+      answer: 1,
+      why: 'Tetikleyici olay öğretmenin verdiği kitap. "he liked it so much that..." zinciri bunu gösteriyor. A ve D aşırı yorum, C metni tersine çeviriyor.'
+    },
+    {
+      id: 'y4', type: 'noanswer', diff: 'easy',
+      stimulusTitle: 'A poster for the fun run',
+      stimulus: '🏃 TEEN FUN RUN\nDate: 18 April, Sunday\nStart: 09:00, in front of the school\nDistance: 3 km\nEntry: free\nT-shirts for the first 100 runners!',
+      stem: 'Which question does NOT have an answer on the poster?',
+      opts: ['Where does the run start?', 'How long is the run?', 'What time does it start?', 'How can I get a T-shirt?'],
+      answer: 3,
+      why: 'T-shirt\'in NASIL alınacağı yazmıyor — sadece "ilk 100 kişiye" deniyor. Kayıt/yöntem bilgisi yok.'
+    },
+    {
+      id: 'y5', type: 'order', diff: 'medium',
+      stem: 'Which is the correct order?\n\nI. Because they are cheap and healthy.\nII. Why do you prefer home-made food to fast food?\nIII. So you never eat burgers?\nIV. Rarely. Maybe once a month.',
+      opts: ['II - I - III - IV', 'I - II - III - IV', 'II - III - I - IV', 'III - II - I - IV'],
+      answer: 0,
+      why: 'II soru → I gerekçe → III takip sorusu → IV sıklık cevabı. "Rarely" bir sıklık zarfı, soru da frequency sormuş.'
+    },
+    {
+      id: 'y6', type: 'mainidea', diff: 'medium',
+      stem: 'Which is the best summary?\n\n"Our school has a new eco-club. The members collect paper, plastic and glass every Friday. They also planted forty trees in the school garden last term. The club leader, Defne, says that their aim is to make the school greener and to teach everyone how to recycle."',
+      opts: ['The eco-club works to make the school greener.', 'Recycling paper is the most important task.', 'Schools should have more clubs.', 'Defne likes planting trees.'],
+      answer: 0,
+      why: 'Kapsayıcı özet: geri dönüşüm + ağaç dikimi + "make the school greener" amacı. Diğerleri tek tek detay.'
+    },
+    {
+      id: 'y7', type: 'table', diff: 'hard',
+      stimulusTitle: 'How 50 teenagers spend their pocket money',
+      stimulus: `<table class="grid-table">
+        <tr><th>Category</th><th>Percentage</th></tr>
+        <tr><td class="rowhead">Snacks & drinks</td><td>40%</td></tr>
+        <tr><td class="rowhead">Savings</td><td>25%</td></tr>
+        <tr><td class="rowhead">Books & stationery</td><td>20%</td></tr>
+        <tr><td class="rowhead">Transport</td><td>15%</td></tr>
+      </table>`,
+      stem: 'If a teenager gets 20 TL pocket money, how much does he/she save?',
+      opts: ['3 TL', '4 TL', '5 TL', '8 TL'],
+      answer: 2,
+      why: 'Birikim %25 → 20 × 0,25 = 5 TL. Önce yüzdelik satırını bul, sonra çarp.'
+    },
+    {
+      id: 'y8', type: 'dialogue', diff: 'hard',
+      stem: 'Which is the most suitable response?\n\n— Do you mind if I use your charger?\n— ______ My battery is full anyway.',
+      opts: ['Not at all, go ahead.', 'Yes, I do. It is mine.', 'No, you cannot.', 'I am using it right now.'],
+      answer: 0,
+      why: '"Do you mind if..." + "My battery is full anyway" → izin veriyor. "Not at all" = hiç önemli değil. D tutarlı olurdu ama "anyway" cümlesi izin verdiğini gösteriyor.'
+    },
+    {
+      id: 'y9', type: 'infer', diff: 'hard',
+      stem: 'Which can we INFER?\n\n"Kaan\'s family moved to a new city three months ago. At first he did not talk to anyone at school, but now he eats lunch with a group from his class. He says he still misses his old friends, but he is happy because the new school has a drama club and he loves acting."',
+      opts: ['Kaan has forgotten his old friends.', 'Kaan is slowly settling into his new school.', 'Kaan does not like acting.', 'Kaan eats lunch alone every day.'],
+      answer: 1,
+      why: 'İlk zamanlar hiç konuşmuyordu → şimdi grupla yemek + drama kulübü + "he is happy" → yavaş yavaş uyum sağlıyor. A, C, D metni tersine çeviriyor.'
+    },
+    {
+      id: 'y10', type: 'noanswer', diff: 'medium',
+      stimulusTitle: 'An e-mail to a pen-friend',
+      stem: 'Hi Alex!\n\nI hope you are well. I am 13 and I live in Izmir with my parents and my little sister. I usually get up at 7:00 and have breakfast with my family. My favourite subject is maths because I find it challenging.\nAt weekends I play basketball with my neighbours. Last week we won a match against a team from Ankara. It was great!\n\nWrite back and tell me about your town.\n\nBest,\nEmre',
+      opts: ['What time does Emre get up?', 'Which subject does Emre like best?', 'How many people are there in Emre\'s family?', 'What does Alex like about his town?'],
+      answer: 3,
+      why: 'A, B, C\'nin cevabı e-maillerde var. D sorusu ALEX\'in hakkında — henüz cevaplamadı, sadece "tell me about your town" deniyor.'
+    }
+  ];
+
   /* ---------------- Projection defaults ---------------- */
   const projection = {
     // MEB standardises each subtest to mean 50, SD 10, then applies
@@ -977,12 +1179,12 @@ window.LGS = (function () {
   /* ---------------- Lookup helpers ----------------
      The mock runner and the printable answer key both need to find
      items by id no matter which paper they came from. */
-  const allMockItems = mockItems.concat(mock2Items, mock3Items, mock4Items);
+  const allMockItems = mockItems.concat(mock2Items, mock3Items, mock4Items, mock5Items, mock6Items);
   function itemsByIds(ids) {
     return ids.map(function (id) {
       return allMockItems.filter(function (x) { return x.id === id; })[0];
     }).filter(Boolean);
   }
 
-  return { types, bank, mocks, mockItems, mock2Items, mock3Items, mock4Items, allMockItems, itemsByIds, projection, strategyCards };
+  return { types, bank, mocks, mockItems, mock2Items, mock3Items, mock4Items, mock5Items, mock6Items, allMockItems, itemsByIds, projection, strategyCards };
 })();

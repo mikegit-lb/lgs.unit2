@@ -171,8 +171,12 @@ window.LGSApp = (function () {
     }).join('');
     return '' +
       '<section class="card" id="mocks">' +
-        '<div class="card-head"><h3>⏱️ Deneme Sınavları</h3><span class="card-tag sec">10 soru · gerçek süre</span></div>' +
-        '<div class="instruction">Two full 10-question papers. The timer runs exactly like the real exam — 1.5 minutes per question. Leave nothing blank in the real exam, but remember: <b>3 yanlış 1 doğruyu götürür</b>.<span class="tr">İki tam 10 soruluk deneme. Sayaç gerçek sınav gibi işler. Gerçek sınavda boş bırakma ama unutma: 3 yanlış 1 doğruyu götürür.</span></div>' +
+        '<div class="card-head"><h3>⏱️ Deneme Sınavları</h3><span class="card-tag sec">' + L.mocks.length + ' deneme · ' + L.allMockItems.length + ' soru</span></div>' +
+        '<div class="instruction">Six full 10-question papers. The timer runs exactly like the real exam — about 1 to 1.5 minutes per question. Leave nothing blank in the real exam, but remember: <b>3 yanlış 1 doğruyu götürür</b>.<span class="tr">Altı tam 10 soruluk deneme. Sayaç gerçek sınav gibi işler. Gerçek sınavda boş bırakma ama unutma: 3 yanlış 1 doğruyu götürür.</span></div>' +
+        '<div class="btnbar" style="margin-bottom:.9rem">' +
+          '<button class="btn btn-ghost btn-sm" id="pdfWithKey">📄 Sınavları yazdır (cevap anahtarlı)</button>' +
+          '<button class="btn btn-ghost btn-sm" id="pdfNoKey">🖨️ Sadece soruları yazdır</button>' +
+        '</div>' +
         '<div class="sectionlist">' + rows + '</div>' +
         '<div id="examHost"></div>' +
       '</section>';
@@ -226,6 +230,11 @@ window.LGSApp = (function () {
     });
     const print = host.querySelector('#printKey');
     if (print) print.addEventListener('click', function () { api.printAnswerKey(); });
+
+    const pdfKey = host.querySelector('#pdfWithKey');
+    if (pdfKey) pdfKey.addEventListener('click', function () { api.printMocks(true); });
+    const pdfPlain = host.querySelector('#pdfNoKey');
+    if (pdfPlain) pdfPlain.addEventListener('click', function () { api.printMocks(false); });
 
     ['pC', 'pW', 'pMu', 'pSig'].forEach(function (id) {
       const el = host.querySelector('#' + id);

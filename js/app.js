@@ -1422,6 +1422,73 @@
   }
 
   /* ================================================================
+     PRINTABLE MOCK EXAM BOOKLET (PDF)
+     Renders every timed paper as a clean, print-ready booklet:
+     cover page, one paper per page, and (optionally) the full
+     Turkish answer key at the end. Use the browser's
+     "Save as PDF" destination to get a PDF file.
+     ================================================================ */
+  function printMocks(withKey) {
+    const host = $('#printableKey');
+    const L = window.LGS;
+    const mins = function (sec) { return Math.round(sec / 60); };
+
+    let html = '<div class="exam-cover">' +
+        '<div class="exam-cover-kicker">Bilim ve Kültür Yayınları · 8. Sınıf İngilizce</div>' +
+        '<h1>LGS DENEME SINAVLARI</h1>' +
+        '<div class="exam-cover-sub">UNIT 2 · TEEN LIFE — ' + L.mocks.length + ' deneme · toplam ' + L.allMockItems.length + ' soru</div>' +
+        '<div class="exam-cover-note">Her deneme yeni sayfada başlar. Doğru seçeneğin yanındaki kutuyu işaretle. ' +
+          'Süre her denemenin üstünde yazıyor. Net = doğru − yanlış/3 — boş bıraktığın soru netini değiştirmez ama puan kaybettirir.</div>' +
+        '<div class="exam-name-line">Ad Soyad: ________________________ &nbsp; Sınıf: ______ &nbsp; Tarih: ____________</div>' +
+      '</div>';
+
+    L.mocks.forEach(function (m) {
+      const items = L.itemsByIds(m.itemIds);
+      html += '<section class="exam-paper">' +
+        '<div class="exam-paper-head">' +
+          '<div class="exam-paper-title">' + esc(m.name) + '</div>' +
+          '<div class="exam-paper-meta">' + items.length + ' soru · ' + mins(m.durationSec) + ' dakika</div>' +
+        '</div>' +
+        '<div class="exam-paper-desc">' + esc(m.description) + '</div>' +
+        items.map(function (it, i) {
+          return '<div class="exam-q">' +
+            '<div class="exam-q-stem"><span class="exam-qno">' + (i + 1) + '.</span>' + esc(it.stem).replace(/\n/g, '<br>') + '</div>' +
+            (it.stimulus ? '<div class="exam-stimulus">' + LGSApp.stimulusHtml(it.stimulus) + '</div>' : '') +
+            '<div class="exam-opts">' + it.opts.map(function (o, oi) {
+              return '<div class="exam-opt"><span class="exam-box">' + 'ABCD'[oi] + '</span><span>' + esc(o) + '</span></div>';
+            }).join('') + '</div>' +
+          '</div>';
+        }).join('') +
+      '</section>';
+    });
+
+    if (withKey) {
+      html += '<section class="exam-paper">' +
+        '<div class="exam-paper-head">' +
+          '<div class="exam-paper-title">CEVAP ANAHTARI</div>' +
+          '<div class="exam-paper-meta">Öğretmen için · ' + L.allMockItems.length + ' soru</div>' +
+        '</div>' +
+        '<div class="exam-paper-desc">Her sorunun doğru cevabı ve Türkçe açıklaması. Öğrenciye vermeden önce bu bölümü ayırın.</div>' +
+        L.mocks.map(function (m) {
+          const items = L.itemsByIds(m.itemIds);
+          return '<div class="exam-key-block">' +
+            '<h4>' + esc(m.name) + '</h4>' +
+            '<div class="exam-key-grid">' + items.map(function (it, i) {
+              return '<div class="exam-key-row"><b>' + (i + 1) + '.</b> ' + 'ABCD'[it.answer] + '</div>';
+            }).join('') + '</div>' +
+            '<div class="exam-key-why">' + items.map(function (it, i) {
+              return '<div>' + (i + 1) + '. ' + esc(it.why) + '</div>';
+            }).join('') + '</div>' +
+          '</div>';
+        }).join('') +
+      '</section>';
+    }
+
+    host.innerHTML = html;
+    window.print();
+  }
+
+  /* ================================================================
      ROUTER
      ================================================================ */
   function route() {
@@ -1449,6 +1516,7 @@
     closeModal: closeModal,
     refreshChrome: renderChrome,
     printAnswerKey: printAnswerKey,
+    printMocks: printMocks,
     award: award,
     render: render,
     esc: esc,

@@ -32,6 +32,7 @@ js/lgs.js                  ← sınav motoru ve MEB puanlaması
 js/app.js                  ← arayüz ve alıştırma bileşenleri
 audio/*.wav                ← 9 ses dosyası (Track 7–12 + okuma metinleri)
 tools/build-audio.js       ← sesleri yeniden üretir
+tools/build-mock-pdf.js    ← denemeleri PDF kitapçığı olarak üretir
 ```
 
 ---
@@ -59,7 +60,7 @@ tools/build-audio.js       ← sesleri yeniden üretir
 | — | **🌊 KONUŞMA LABORATUVARI** | Kitapta yok — davet diyalog kurucu + 5 cümle kalıbı sesli çalışması |
 | — | **🎯 LGS SINAV MERKEZİ** | Kitapta yok — aşağıya bakın |
 
-Toplam **200'den fazla otomatik puanlanan soru/cevap** + serbest yazma panoları.
+Toplam **220'den fazla otomatik puanlanan soru/cevap** + serbest yazma panoları.
 
 ---
 
@@ -89,8 +90,34 @@ Her atölyede **5–6 soru** ve Türkçe açıklama.
 | Deneme 2 · Karışık LGS Stili | **8 dk** | Hız antrenmanı — süre baskısını azaltır |
 | Deneme 3 · Ek Değerlendirme | **10 dk** | Farklı soru tipleriyle geniş değerlendirme (soru başına 1 dk) |
 | Deneme 4 · Zaman Baskısı | **8 dk** | Zaman baskısı testi — hız ve doğruluk dengesi |
+| Deneme 5 · Kazanım Kontrolü | **12 dk** | Kapsamlı deneme — tablo okuma ve "cevabı olmayan soru" ağırlıklı |
+| Deneme 6 · Final Provası | **10 dk** | Gerçek sınav öncesi son kontrol |
 
-Dördü de **10 soru** — gerçek LGS İngilizce bölümünün uzunluğu. Soru paleti, işaretleme, otomatik kapanma var. Deneme 3 ve 4'te tablo okuma, "cevabı olmayan soru" ve çıkarım soruları ağırlıktadır.
+**Toplam 6 deneme · 60 soru.** Her biri **10 soru** — gerçek LGS İngilizce bölümünün uzunluğu. Soru paleti, işaretleme, otomatik kapanma var. Deneme 3–6'da tablo okuma, "cevabı olmayan soru" ve çıkarım soruları ağırlıktadır.
+
+### B2. 📄 Sınavları PDF olarak indirme
+
+Deneme Sınavları bölümündeki iki düğme, bütün denemeleri **yazdırmaya hazır** bir kitapçık olarak hazırlar:
+
+- **📄 Sınavları yazdır (cevap anahtarlı)** — 6 deneme + öğretmen için cevap anahtarı (22 sayfa)
+- **🖨️ Sadece soruları yazdır** — sadece 6 deneme, anahtarsız (20 sayfa)
+
+Düğmeye basınca tarayıcının yazdırma penceresi açılır. Hedefi **"PDF olarak kaydet"** seçin — dosya bilgisayarınıza iner. Kapak sayfasında ad/sınıf/tarih alanı, her deneme ayrı sayfada, seçenekler A/B/C/D kutucuklarıyla işaretlemeye hazır.
+
+**Komut satırından toplu üretim** (başlık satırı olmayan temiz PDF için):
+
+```bash
+node tools/build-mock-pdf.js
+```
+
+Bu komut projenin kök klasörüne iki dosya yazar:
+
+| Dosya | İçerik |
+|---|---|
+| `lgs-denemeler.pdf` | 6 deneme · 60 soru · 20 sayfa |
+| `lgs-denemeler-cevap-anahtarli.pdf` | Yukarıdakiler + cevap anahtarı · 22 sayfa |
+
+İnternet gerekmez; yerel Chrome/Edge ile yazdırılır.
 
 ### C. Puanlama motoru — gerçek MEB kuralı
 
