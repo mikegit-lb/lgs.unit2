@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 2 · Teen Life — Interactive Workbook + LGS Exam Centre</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="app" class="app" data-mode="student">
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar">
+    <button class="iconbtn" id="sidebarToggle" title="Menu" aria-label="Toggle menu">☰</button>
+    <div class="brand">
+      <span class="brand-mark">T2</span>
+      <div class="brand-text">
+        <strong>Teen Life</strong>
+        <span>Unit 2 · 8. Sınıf İngilizce</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="chip chip-xp" id="xpChip" title="Experience points">⚡ <b id="xpValue">0</b> XP</div>
+      <div class="chip chip-streak" id="streakChip" title="Answer streak">🔥 <b id="streakValue">0</b></div>
+      <div class="badge-wrap">
+        <button class="iconbtn" id="badgeBtn" title="Badges">🏅 <b id="badgeCount">0</b></button>
+      </div>
+      <button class="iconbtn" id="modeToggle" title="Switch to teacher / projector mode">📽️</button>
+      <button class="iconbtn" id="helpBtn" title="How to use this workbook">?</button>
+    </div>
+  </header>
+
+  <div class="shell">
+
+    <!-- ============ SIDEBAR ============ -->
+    <nav class="sidebar" id="sidebar" aria-label="Unit navigation"></nav>
+
+    <!-- ============ MAIN ============ -->
+    <main class="main" id="main">
+      <div class="view" id="view"></div>
+    </main>
+
+  </div>
+
+  <!-- ============ BOTTOM PROGRESS ============ -->
+  <footer class="statusbar">
+    <div class="progressbar"><div class="progressbar-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="statusbar-text">
+      <span id="statusText">Ready</span>
+      <span id="statusPct">0%</span>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ============ MODALS ============ -->
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <h2 id="modalTitle">Title</h2>
+      <button class="iconbtn" id="modalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ============ ANSWER KEY (printable) ============ -->
+<div id="printableKey" class="printable-key" aria-hidden="true"></div>
+
+<noscript>
+  <div class="noscript">This workbook needs JavaScript. Please enable it and reload the page.</div>
+</noscript>
+
+<script src="js/audio-scripts.js"></script>
+<script src="js/data.js"></script>
+<script src="js/lgs-items.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/lgs.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

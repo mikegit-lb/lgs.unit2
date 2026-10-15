@@ -1,0 +1,154 @@
+/* ============================================================
+   Audio scripts for Unit 2 · Teen Life
+   Source of truth for BOTH the browser fallback (speech
+   synthesis) and the pre-rendered WAV files.
+
+   Regenerate the WAVs after editing this file:
+     node tools/gen-audio-manifest.js
+     powershell -ExecutionPolicy Bypass -File tools/generate-audio.ps1
+
+   Speaker keys:  D = Microsoft David (male)
+                  Z = Microsoft Zira  (female)
+   ============================================================ */
+
+window.AUDIO_SCRIPTS = {
+
+  /* ---- Track 7 — Get Ready: number the pictures (p.26) ---- */
+  track07: {
+    title: 'Track 7 · What I do',
+    rate: 0.88,
+    lines: [
+      { s: 'D', t: 'Hello everyone! Let me tell you about my week.' },
+      { s: 'D', t: 'Number one. I go to the cinema with my friends on Fridays.' },
+      { s: 'D', t: 'Number two. I listen to music every day after school.' },
+      { s: 'D', t: 'Number three. I surf the Internet in the evenings.' },
+      { s: 'D', t: 'Number four. I play basketball on Mondays and Wednesdays.' },
+      { s: 'D', t: 'Number five. I do a sport in the gym on Saturdays.' },
+      { s: 'D', t: 'And number six. I read a book before I go to bed.' }
+    ]
+  },
+
+  /* ---- Track 8 — Brooke's likes and dislikes (p.27) ---- */
+  track08: {
+    title: 'Track 8 · Brooke likes and dislikes',
+    rate: 0.86,
+    lines: [
+      { s: 'D', t: 'Hi Brooke. What do you like or dislike doing in your free time?' },
+      { s: 'Z', t: 'Well, I love hanging around with my friends. We usually meet in the park.' },
+      { s: 'D', t: 'That sounds nice. And what about spending time with your family?' },
+      { s: 'Z', t: 'I enjoy spending time with my family too. We watch films together at the weekends.' },
+      { s: 'D', t: 'Do you like doing the shopping with your mum?' },
+      { s: 'Z', t: 'Oh no, I do not. I hate doing the shopping. It is so boring.' },
+      { s: 'D', t: 'What about playing online games?' },
+      { s: 'Z', t: 'I dislike playing online games. I think they are a waste of time.' },
+      { s: 'D', t: 'So what else do you enjoy?' },
+      { s: 'Z', t: 'I love surfing the Internet. I read the news and watch videos. And I am keen on doing a sport. I play volleyball every Tuesday.' },
+      { s: 'D', t: 'Do you watch sports programmes on television?' },
+      { s: 'Z', t: 'No, I never watch sports programmes. I think they are unbearable.' }
+    ]
+  },
+
+  /* ---- Track 9 — Archie dialogue, gap fill (p.27) ---- */
+  track09: {
+    title: 'Track 9 · Archie',
+    rate: 0.86,
+    lines: [
+      { s: 'D', t: 'What do you like or dislike doing, Archie?' },
+      { s: 'Z', t: 'I like going to the cinema, but I dislike listening to loud music. I think it is unbearable.' },
+      { s: 'Z', t: 'I enjoy playing basketball with my friends, and I love hiking.' },
+      { s: 'D', t: 'What about tidying your room?' },
+      { s: 'Z', t: 'No way! I hate doing it.' }
+    ]
+  },
+
+  /* ---- Track 10 — Tarik and Doris (p.30) ---- */
+  track10: {
+    title: 'Track 10 · Tarik and Doris',
+    rate: 0.85,
+    lines: [
+      { s: 'Z', t: 'Hello, Tarik. What do you do in the evenings?' },
+      { s: 'D', t: 'Well, I usually read or watch television. What about you, Doris?' },
+      { s: 'Z', t: 'I prefer reading life stories of patriots. I think they are very interesting.' },
+      { s: 'D', t: 'Really? I do not like reading that much. What else do you do?' },
+      { s: 'Z', t: 'I like watching documentaries because they are educative.' },
+      { s: 'D', t: 'I do different things than you do in the evenings. I usually chat with my friends online.' }
+    ]
+  },
+
+  /* ---- Track 11 — opinion monologue, gap fill (p.30) ---- */
+  track11: {
+    title: 'Track 11 · My opinions',
+    rate: 0.85,
+    lines: [
+      { s: 'Z', t: 'Let me tell you about my tastes.' },
+      { s: 'Z', t: 'I never listen to rock music. I think it is unbearable.' },
+      { s: 'Z', t: 'I am keen on camping. It is exciting.' },
+      { s: 'Z', t: 'To be honest, I never watch documentaries. They are boring.' },
+      { s: 'Z', t: 'Listening to classical music is relaxing.' },
+      { s: 'Z', t: 'And I hate buying trendy clothes.' }
+    ]
+  },
+
+  /* ---- Track 12 — what do you think about the activities (p.37) ---- */
+  track12: {
+    title: 'Track 12 · What do you think about them?',
+    rate: 0.86,
+    lines: [
+      { s: 'D', t: 'Tell me what you think about these activities. Fishing?' },
+      { s: 'Z', t: 'Fishing is relaxing.' },
+      { s: 'D', t: 'And camping?' },
+      { s: 'Z', t: 'Camping is exciting.' },
+      { s: 'D', t: 'What about playing chess?' },
+      { s: 'Z', t: 'Playing chess is fun.' },
+      { s: 'D', t: 'And surfing the Internet?' },
+      { s: 'Z', t: 'Surfing the Internet is boring. I prefer going out with my friends.' }
+    ]
+  },
+
+  /* ---- Helen's blog, read aloud (p.29) ---- */
+  helenBlog: {
+    title: "Helen's Blog · read aloud",
+    rate: 0.85,
+    lines: [
+      { s: 'Z', t: 'Helen\'s blog. Activities teenagers like doing these days!' },
+      { s: 'Z', t: 'The most popular activities among teenagers are surfing the Internet, sending messages to each other and going to the cinema or concerts.' },
+      { s: 'Z', t: 'Other than these, teens like hanging around or going shopping.' },
+      { s: 'Z', t: 'I am here to give you some other ideas to do in your free time. What about starting doing a sport? Choose a sport that you can do easily.' },
+      { s: 'Z', t: 'For example, walk five kilometres every day for a healthy body. It is easy, and you can do it everywhere.' },
+      { s: 'Z', t: 'And reading! Read a newspaper or a book every day. Reading enlarges your horizons.' },
+      { s: 'Z', t: 'I recommend you to read George Heart\'s latest book about teen life. I am going to talk about music next time. Take care, folks.' }
+    ]
+  },
+
+  /* ---- Nancy & Buket dialogue with the answers (p.36) ---- */
+  dialogue36: {
+    title: 'Dialogue · Nancy and Buket (with answers)',
+    rate: 0.85,
+    lines: [
+      { s: 'D', t: 'What do you usually do on weekends?' },
+      { s: 'Z', t: 'On weekends? Well, I usually hang around or go to the cinema.' },
+      { s: 'D', t: 'Do you like going to the concerts?' },
+      { s: 'Z', t: 'No, I do not like going to the concerts, but my sister Emma does.' },
+      { s: 'D', t: 'What kind of music does your sister Emma love?' },
+      { s: 'Z', t: 'She loves heavy metal music.' },
+      { s: 'D', t: 'What do you think of it?' },
+      { s: 'Z', t: 'Me? I think it is unbearable.' },
+      { s: 'D', t: 'There is a concert on Sunday. Would you like to go with me?' },
+      { s: 'Z', t: 'No, thanks. You can go to the concert with Emma!' }
+    ]
+  },
+
+  /* ---- Martha, read aloud (p.33) ---- */
+  martha: {
+    title: 'Martha · read aloud',
+    rate: 0.86,
+    lines: [
+      { s: 'D', t: 'Martha is keen on running. She is a national athlete. That is why she works hard.' },
+      { s: 'D', t: 'She gets up early every morning, has a big breakfast and goes to school.' },
+      { s: 'D', t: 'After school, she has a short rest and starts doing exercises at two in the afternoon.' },
+      { s: 'D', t: 'She goes to the gym on Mondays, Wednesdays and Fridays.' },
+      { s: 'D', t: 'Martha trains in the field every day. She runs ten kilometres each day.' },
+      { s: 'D', t: 'On weekends, she stays at home and rests.' }
+    ]
+  }
+};
